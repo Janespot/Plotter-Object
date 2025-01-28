@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plotter Object</title>
+</head>
+<body style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
+    <canvas id="myCanvas" width="400px" height="400px" style="width:100%;max-width:400px;border:1px solid black"></canvas>
+    
+    <script src="plotlib.js"></script>
+    <script>
+        let myPlotter = new XYPlotter("myCanvas");
+
+        numPoints = 500;
+
+        const xPoints = Array(numPoints).fill(0).map(() => {
+            return Math.random() * myPlotter.xMax
+        })
+
+        const yPoints = Array(numPoints).fill(0).map(() => {
+            return Math.random() * myPlotter.yMax
+        })
+
+        myPlotter.plotPoints(numPoints, xPoints, yPoints, "purple");
+        myPlotter.transformXY();
+
+        myPlotter.plotLine(0, 0, myPlotter.xMax, myPlotter.yMax, "red");
+    </script>
+</body>
+</html>
