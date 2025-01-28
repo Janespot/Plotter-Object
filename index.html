@@ -14,18 +14,23 @@
 
         numPoints = 500;
 
-        const xPoints = Array(numPoints).fill(0).map(() => {
-            return Math.random() * myPlotter.xMax
-        })
+        const xPoints = [];
+        const yPoints = [];
+        
+        for (let i = 0; i < numPoints; i++) {
+            xPoints[i] = Math.random() * myPlotter.xMax;
+            yPoints[i] = Math.random() * myPlotter.yMax
+        }
 
-        const yPoints = Array(numPoints).fill(0).map(() => {
-            return Math.random() * myPlotter.yMax
-        })
-
-        myPlotter.plotPoints(numPoints, xPoints, yPoints, "purple");
         myPlotter.transformXY();
-
-        myPlotter.plotLine(0, 0, myPlotter.xMax, myPlotter.yMax, "red");
+        
+        function f(x) {
+            return x * 1.2 + 50;
+        }
+        
+        myPlotter.plotLine(myPlotter.xMin, f(myPlotter.xMin), myPlotter.xMax, f(myPlotter.xMax), "red");
+        
+        myPlotter.plotPoints(500, xPoints, yPoints);
     </script>
 </body>
 </html>

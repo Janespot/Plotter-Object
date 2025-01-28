@@ -17,8 +17,18 @@ function XYPlotter(id) {
         this.ctx.transform(1, 0, 0, -1, 0, this.canvas.height);
     }
 
-    this.plotPoints = function(n, xArr, yArr, color, radius = 3) {
+    this.plotPoints = function(n, xArr, yArr, radius = 3) {
+        let desired = [];
+        
         for (let i = 0; i < n; i++) {
+            desired[i] = 0;
+            if (yArr[i] > f(xArr[i])) desired[i] = 1;
+        }
+
+        for (let i = 0; i < n; i++) {
+            let color = "purple";
+            
+            if (desired[i]) color = "green";
             this.ctx.fillStyle = color;
             this.ctx.beginPath();
             this.ctx.ellipse(xArr[i], yArr[i], radius, radius, 0, 0, Math.PI * 2);
